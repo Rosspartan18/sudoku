@@ -16,12 +16,12 @@ namespace Sudoku.ViewModels
         {
             _board = board;
 
-            Values = new List<List<int?>>(9);
+            Values = new List<List<int>>(9);
             CanEdit = new List<List<bool>>(9);
 
             for (int x = 0; x < 9; x++)
             {
-                Values.Add(new List<int?>(9));
+                Values.Add(new List<int>(9));
                 CanEdit.Add(new List<bool>(9));
 
                 for (int y = 0; y < 9; y++)
@@ -33,8 +33,8 @@ namespace Sudoku.ViewModels
         }
 
 
-        public List<List<int?>> Values;
-        public List<List<bool>> CanEdit;
+        public List<List<int>> Values { get; set; }
+        public List<List<bool>> CanEdit { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
     }

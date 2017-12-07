@@ -10,11 +10,11 @@ namespace Sudoku.Models
     {
         public Board()
         {
-            Values = new int?[9, 9];
+            Values = new int[9, 9];
             CanEdit = new bool[9, 9];
         }
 
-        public int?[,] Values
+        public int[,] Values
         {
             get;
             set;
