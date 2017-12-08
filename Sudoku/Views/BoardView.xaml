@@ -35,6 +35,19 @@
     </Window.Resources>
 
     <Grid>
-        <ItemsControl x:Name="lst" ItemTemplate="{DynamicResource DataTemplate_Level1}" ItemsSource="{Binding BoardSquares}"/>
+        <ItemsControl x:Name="lst" ItemTemplate="{DynamicResource DataTemplate_Level1}" ItemsSource="{Binding BoardSquares}">
+            <ItemsControl.InputBindings>
+                <KeyBinding Key="NumPad0"  Command="{Binding NumberKeyPressedCommand}"/>
+                <KeyBinding Key="NumPad1" Command="{Binding NumberKeyPressedCommand}" CommandParameter="1"/>
+                <KeyBinding Key="NumPad2" Command="{Binding NumberKeyPressedCommand}" CommandParameter="2"/>
+                <KeyBinding Key="NumPad3" Command="{Binding NumberKeyPressedCommand}" CommandParameter="3"/>
+                <KeyBinding Key="NumPad4" Command="{Binding NumberKeyPressedCommand}" CommandParameter="4"/>
+                <KeyBinding Key="NumPad5" Command="{Binding NumberKeyPressedCommand}" CommandParameter="5"/>
+                <KeyBinding Key="NumPad6" Command="{Binding NumberKeyPressedCommand}" CommandParameter="6"/>
+                <KeyBinding Key="NumPad7" Command="{Binding NumberKeyPressedCommand}" CommandParameter="7"/>
+                <KeyBinding Key="NumPad8" Command="{Binding NumberKeyPressedCommand}" CommandParameter="8"/>
+                <KeyBinding Key="NumPad9" Command="{Binding NumberKeyPressedCommand}" CommandParameter="9"/>
+            </ItemsControl.InputBindings>
+        </ItemsControl>
     </Grid>
 </Window>

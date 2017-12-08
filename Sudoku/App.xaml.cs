@@ -1,5 +1,5 @@
 ﻿using Sudoku.Models;
-using Sudoku.ViewModels;
+using Sudoku.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Configuration;

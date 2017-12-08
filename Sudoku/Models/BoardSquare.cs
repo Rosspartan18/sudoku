@@ -1,4 +1,4 @@
-﻿using Sudoku.MVVM;
+﻿using GalaSoft.MvvmLight;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Sudoku.Models
 {
-    public class BoardSquare : NotifyPropertyChanged
+    public class BoardSquare : ObservableObject
     {
         private int? _value;
         public int? Value

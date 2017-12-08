@@ -1,15 +1,17 @@
-﻿using Sudoku.Models;
-using Sudoku.MVVM;
+﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.CommandWpf;
+using Sudoku.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
-namespace Sudoku.ViewModels
+namespace Sudoku.ViewModel
 {
-    class BoardViewModel : NotifyPropertyChanged 
+    class BoardViewModel : ObservableObject
     {
         Board _board;
 
@@ -49,5 +51,13 @@ namespace Sudoku.ViewModels
                 }
             }
         }
+
+
+        RelayCommand<Key> NumberKeyPressedCommand = new RelayCommand<Key>((key) =>
+        {
+
+        });
+
     }
+
 }
