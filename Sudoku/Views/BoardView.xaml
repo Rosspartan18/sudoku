@@ -9,12 +9,12 @@
 
     <Window.Resources>
         <DataTemplate x:Key="DataTemplate_Level2">
-            <Button Content="{Binding Value}" Height="40" Width="50" Margin="1,1,1,1">
+            <Button Content="{Binding Value}" Height="40" Width="50" Margin="1,1,1,1" Focusable="{Binding CanEdit}">
                 <Button.Style>
                     <Style TargetType="Button">
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding CanEdit}"
-                                         Value="True">
+                                         Value="False">
                                 <Setter Property="FontWeight" Value="Bold" />
                             </DataTrigger>
                         </Style.Triggers>
