@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Sudoku.MVVM;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Sudoku.Models
 {
-    public class BoardSquare : INotifyPropertyChanged
+    public class BoardSquare : NotifyPropertyChanged
     {
         private int? _value;
         public int? Value
@@ -40,16 +41,6 @@ namespace Sudoku.Models
                     _canEdit = value;
                     RaisePropertyChanged("CanEdit");
                 }
-            }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        void RaisePropertyChanged(string propertyName)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
     }

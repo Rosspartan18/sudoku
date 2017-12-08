@@ -64,6 +64,7 @@
     </Compile>
     <Compile Include="Models\Board.cs" />
     <Compile Include="Models\BoardSquare.cs" />
+    <Compile Include="MVVM\NotifyPropertyChanged.cs" />
     <Compile Include="ViewModels\BoardViewModel.cs" />
     <Compile Include="Views\BoardView.xaml.cs">
       <DependentUpon>BoardView.xaml</DependentUpon>
@@ -98,7 +99,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Converter\" />
-    <Folder Include="MVVM\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

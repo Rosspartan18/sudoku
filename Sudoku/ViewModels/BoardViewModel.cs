@@ -1,4 +1,5 @@
 ﻿using Sudoku.Models;
+using Sudoku.MVVM;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Sudoku.ViewModels
 {
-    class BoardViewModel : INotifyPropertyChanged 
+    class BoardViewModel : NotifyPropertyChanged 
     {
         Board _board;
 
@@ -32,6 +33,21 @@ namespace Sudoku.ViewModels
 
         public List<List<BoardSquare>> BoardSquares { get; set; }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        private BoardSquare _selected;
+        public BoardSquare Selected
+        {
+            get
+            {
+                return _selected;
+            }
+            set
+            {
+                if (_selected != value)
+                {
+                    _selected = value;
+                    RaisePropertyChanged("Selected");
+                }
+            }
+        }
     }
 }
