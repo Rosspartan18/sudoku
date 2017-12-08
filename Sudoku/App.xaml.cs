@@ -23,8 +23,12 @@ namespace Sudoku
             {
                 for (int y = 0; y < 9; y++)
                 {
-                    board.Values[x, y] = x + y;
-                    board.CanEdit[x, y] = (((x + y) % 2) == 0);
+                    BoardSquare boardSquare = new BoardSquare();
+
+                    boardSquare.Value = x + y;
+                    boardSquare.CanEdit = (((x + y) % 2) == 0);
+
+                    board.BoardSquares[x, y] = boardSquare;
                 }
             }
 

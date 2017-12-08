@@ -16,25 +16,21 @@ namespace Sudoku.ViewModels
         {
             _board = board;
 
-            Values = new List<List<int>>(9);
-            CanEdit = new List<List<bool>>(9);
+            BoardSquares = new List<List<BoardSquare>>(9);
 
             for (int x = 0; x < 9; x++)
             {
-                Values.Add(new List<int>(9));
-                CanEdit.Add(new List<bool>(9));
+                BoardSquares.Add(new List<BoardSquare>(9));
 
                 for (int y = 0; y < 9; y++)
                 {
-                    Values[x].Add(board.Values[x, y]);
-                    CanEdit[x].Add(board.CanEdit[x, y]);
+                    BoardSquares[x].Add(board.BoardSquares[x, y]);
                 }
             }
         }
 
 
-        public List<List<int>> Values { get; set; }
-        public List<List<bool>> CanEdit { get; set; }
+        public List<List<BoardSquare>> BoardSquares { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
     }

@@ -9,7 +9,18 @@
 
     <Window.Resources>
         <DataTemplate x:Key="DataTemplate_Level2">
-            <Button Content="{Binding}" Height="40" Width="50" Margin="1,1,1,1"/>
+            <Button Content="{Binding Value}" Height="40" Width="50" Margin="1,1,1,1">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding CanEdit}"
+                                         Value="True">
+                                <Setter Property="FontWeight" Value="Bold" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
         </DataTemplate>
 
         <DataTemplate x:Key="DataTemplate_Level1">
@@ -24,6 +35,6 @@
     </Window.Resources>
 
     <Grid>
-        <ItemsControl x:Name="lst" ItemTemplate="{DynamicResource DataTemplate_Level1}" ItemsSource="{Binding Values}"/>
+        <ItemsControl x:Name="lst" ItemTemplate="{DynamicResource DataTemplate_Level1}" ItemsSource="{Binding BoardSquares}"/>
     </Grid>
 </Window>

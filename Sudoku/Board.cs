@@ -10,21 +10,15 @@ namespace Sudoku.Models
     {
         public Board()
         {
-            Values = new int[9, 9];
-            CanEdit = new bool[9, 9];
+            BoardSquares = new BoardSquare[9, 9];
         }
 
-        public int[,] Values
+        public BoardSquare[,] BoardSquares
         {
             get;
             set;
         }
 
 
-        public bool[,] CanEdit
-        {
-            get;
-            set;
-        }
     }
 }
