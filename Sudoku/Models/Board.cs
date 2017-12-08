@@ -11,6 +11,14 @@ namespace Sudoku.Models
         public Board()
         {
             BoardSquares = new BoardSquare[9, 9];
+
+            for (int x = 0; x < 9; x++)
+            {
+                for (int y = 0; y < 9; y++)
+                {
+                    BoardSquares[x, y] = new BoardSquare() { CanEdit = true };
+                }
+            }
         }
 
         public BoardSquare[,] BoardSquares
