@@ -34,11 +34,11 @@ namespace Sudoku
 
             BoardViewModel viewModel = new BoardViewModel(board);
 
-            MainWindow window = new Sudoku.MainWindow();
+            BoardView view = new Sudoku.BoardView();
 
-            window.DataContext = viewModel;
+            view.DataContext = viewModel;
 
-            window.Show();
+            view.Show();
         }
     }
 }
