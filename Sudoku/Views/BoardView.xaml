@@ -11,18 +11,26 @@
 
     <Window.Resources>
         <DataTemplate x:Key="BoardSquareTemplate">
-            <Button Content="{Binding Value}" Height="40" Width="50" Margin="1,1,1,1" Focusable="{Binding CanEdit}" GotFocus="Button_GotFocus" LostFocus="Button_LostFocus">
-                <Button.Style>
-                    <Style TargetType="Button">
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding CanEdit}"
+            <Border x:Name ="Border" BorderBrush ="Black" BorderThickness ="1">
+                <Button Content="{Binding Value}"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Focusable="True"
+                    GotFocus="Button_GotFocus"
+                    LostFocus="Button_LostFocus"
+                    >
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding CanEdit}"
                                          Value="False">
-                                <Setter Property="FontWeight" Value="Bold" />
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </Button.Style>
-            </Button>
+                                    <Setter Property="FontWeight" Value="Bold" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+            </Border>
         </DataTemplate>
 
         <DataTemplate x:Key="BoardSquareColumnsTemplate">
