@@ -11,13 +11,14 @@
 
     <Window.Resources>
         <DataTemplate x:Key="BoardSquareTemplate">
-            <Border x:Name ="Border" BorderBrush ="Black" BorderThickness ="1">
+            <Border BorderBrush ="Black" BorderThickness ="1">
                 <Button Content="{Binding Value}"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
                     Focusable="True"
                     GotFocus="Button_GotFocus"
                     LostFocus="Button_LostFocus"
+                    FocusVisualStyle="{x:Null}"
                     >
                     <Button.Style>
                         <Style TargetType="Button">
