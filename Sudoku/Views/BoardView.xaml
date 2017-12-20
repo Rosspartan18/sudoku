@@ -25,8 +25,8 @@
             </Button>
         </DataTemplate>
 
-        <DataTemplate x:Key="DataTemplate_Level1">
-            <ItemsControl ItemsSource="{Binding}" ItemTemplate="{StaticResource DataTemplate_Level2}">
+        <DataTemplate x:Key="BoardSquareColumnsTemplate">
+            <ItemsControl ItemsSource="{Binding}" ItemTemplate="{StaticResource BoardSquareTemplate}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <UniformGrid Rows ="1"/>
@@ -37,7 +37,7 @@
     </Window.Resources>
 
     <Grid>
-        <ItemsControl x:Name="lst" ItemTemplate="{DynamicResource DataTemplate_Level1}" ItemsSource="{Binding BoardSquares}">
+        <ItemsControl x:Name="lst" ItemTemplate="{DynamicResource BoardSquareColumnsTemplate}" ItemsSource="{Binding BoardSquares}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <UniformGrid Columns ="1"/>
