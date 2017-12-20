@@ -3,8 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:local="clr-namespace:Sudoku"
         mc:Ignorable="d"
+        xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
         Title="MainWindow" Height="350" Width="525">
 
     <Window.Resources>
@@ -24,10 +26,10 @@
         </DataTemplate>
 
         <DataTemplate x:Key="DataTemplate_Level1">
-            <ItemsControl ItemsSource="{Binding}" ItemTemplate="{DynamicResource DataTemplate_Level2}">
+            <ItemsControl ItemsSource="{Binding}" ItemTemplate="{StaticResource DataTemplate_Level2}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <StackPanel Orientation="Horizontal"/>
+                        <UniformGrid Rows ="1"/>
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
             </ItemsControl>
@@ -36,8 +38,13 @@
 
     <Grid>
         <ItemsControl x:Name="lst" ItemTemplate="{DynamicResource DataTemplate_Level1}" ItemsSource="{Binding BoardSquares}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Columns ="1"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
             <ItemsControl.InputBindings>
-                <KeyBinding Key="NumPad0"  Command="{Binding NumberKeyPressedCommand}"/>
+                <KeyBinding Key="NumPad0" Command="{Binding NumberKeyPressedCommand}" CommandParameter="0"/>
                 <KeyBinding Key="NumPad1" Command="{Binding NumberKeyPressedCommand}" CommandParameter="1"/>
                 <KeyBinding Key="NumPad2" Command="{Binding NumberKeyPressedCommand}" CommandParameter="2"/>
                 <KeyBinding Key="NumPad3" Command="{Binding NumberKeyPressedCommand}" CommandParameter="3"/>

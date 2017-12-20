@@ -3,6 +3,7 @@ using GalaSoft.MvvmLight.CommandWpf;
 using Sudoku.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -19,44 +20,72 @@ namespace Sudoku.ViewModel
         {
             _board = board;
 
-            BoardSquares = new List<List<BoardSquare>>(9);
+            BoardSquares = new ObservableCollection<ObservableCollection<BoardSquare>>();
 
             for (int x = 0; x < 9; x++)
             {
-                BoardSquares.Add(new List<BoardSquare>(9));
+                BoardSquares.Add(new ObservableCollection<BoardSquare>());
 
                 for (int y = 0; y < 9; y++)
                 {
                     BoardSquares[x].Add(board.BoardSquares[x, y]);
                 }
             }
+
+            NumberKeyPressedCommand = new RelayCommand<string>(this.NumberKeyPressedAction);
         }
 
 
-        public List<List<BoardSquare>> BoardSquares { get; set; }
+        public ObservableCollection<ObservableCollection<BoardSquare>> BoardSquares { get; set; }
 
-        private BoardSquare _selected;
-        public BoardSquare Selected
+        private BoardSquare _selectedSquare;
+        public BoardSquare SelectedSquare
         {
             get
             {
-                return _selected;
+                return _selectedSquare;
             }
             set
             {
-                if (_selected != value)
+                if (_selectedSquare != value)
                 {
-                    _selected = value;
-                    RaisePropertyChanged("Selected");
+                    _selectedSquare = value;
+                    RaisePropertyChanged("SelectedSquare");
                 }
             }
         }
 
 
-        RelayCommand<Key> NumberKeyPressedCommand = new RelayCommand<Key>((key) =>
+        public RelayCommand<String> NumberKeyPressedCommand
         {
+            get;
+            set;
+        }
 
-        });
+        void NumberKeyPressedAction(String key)
+        {
+            if ((key != null) && (SelectedSquare != null) && (SelectedSquare.CanEdit))
+            {
+                try
+                {
+                    int number = int.Parse(key);
+
+                    if (number >=0 && number <= 10 )
+                    {
+                        SelectedSquare.Value = number;
+                    }
+                }
+                catch (FormatException)
+                {
+
+                }
+                catch (OverflowException)
+                {
+
+                }
+            }
+        }
+
 
     }
 
