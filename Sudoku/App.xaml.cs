@@ -70,6 +70,8 @@ namespace Sudoku
 
             view.DataContext = viewModel;
 
+            view.BindDataContext();
+
             view.Show();
         }
     }

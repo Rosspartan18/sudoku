@@ -26,5 +26,53 @@ namespace Sudoku
         {
             InitializeComponent();
         }
+
+
+        public BoardSquare FocusedSquare
+        {
+            get { return (BoardSquare)this.GetValue(FocusedSquareProperty); }
+            set { this.SetValue(FocusedSquareProperty, value); }
+        }
+
+        public static readonly DependencyProperty FocusedSquareProperty = DependencyProperty.Register(
+                "FocusedSquare", typeof(BoardSquare), typeof(BoardView), new PropertyMetadata(default(BoardSquare)));
+
+        private void Button_GotFocus(object sender, RoutedEventArgs e)
+        {
+            FrameworkElement source = e?.Source as FrameworkElement;
+
+            FocusedSquare = source?.DataContext as BoardSquare;
+        }
+
+        private void Button_LostFocus(object sender, RoutedEventArgs e)
+        {
+            FrameworkElement source = e?.Source as FrameworkElement;
+
+            BoardSquare lostSquare = source?.DataContext as BoardSquare;
+
+            if (lostSquare == FocusedSquare)
+            {
+                FocusedSquare = null;
+            }
+        }
+
+        public void BindDataContext()
+        {
+            BoardViewModel vm = DataContext as BoardViewModel;
+
+            if (vm != null)
+            {
+                Binding selectedSquareBinding = new Binding();
+
+                selectedSquareBinding.Source = vm;
+                selectedSquareBinding.Path = new PropertyPath("SelectedSquare");
+                selectedSquareBinding.Mode = BindingMode.TwoWay;
+                selectedSquareBinding.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
+                BindingOperations.SetBinding(this, BoardView.FocusedSquareProperty, selectedSquareBinding);
+
+            }
+
+
+        }
     }
 }

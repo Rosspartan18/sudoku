@@ -10,8 +10,8 @@
         Title="MainWindow" Height="350" Width="525">
 
     <Window.Resources>
-        <DataTemplate x:Key="DataTemplate_Level2">
-            <Button Content="{Binding Value}" Height="40" Width="50" Margin="1,1,1,1" Focusable="{Binding CanEdit}">
+        <DataTemplate x:Key="BoardSquareTemplate">
+            <Button Content="{Binding Value}" Height="40" Width="50" Margin="1,1,1,1" Focusable="{Binding CanEdit}" GotFocus="Button_GotFocus" LostFocus="Button_LostFocus">
                 <Button.Style>
                     <Style TargetType="Button">
                         <Style.Triggers>
@@ -26,7 +26,7 @@
         </DataTemplate>
 
         <DataTemplate x:Key="BoardSquareColumnsTemplate">
-            <ItemsControl ItemsSource="{Binding}" ItemTemplate="{StaticResource BoardSquareTemplate}">
+            <ItemsControl ItemsSource="{Binding}" ItemTemplate="{StaticResource BoardSquareTemplate}" Focusable="False">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <UniformGrid Rows ="1"/>
@@ -37,7 +37,7 @@
     </Window.Resources>
 
     <Grid>
-        <ItemsControl x:Name="lst" ItemTemplate="{DynamicResource BoardSquareColumnsTemplate}" ItemsSource="{Binding BoardSquares}">
+        <ItemsControl x:Name="lst" ItemTemplate="{DynamicResource BoardSquareColumnsTemplate}" ItemsSource="{Binding BoardSquares}" Focusable="False">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <UniformGrid Columns ="1"/>
