@@ -11,7 +11,7 @@
 
     <Window.Resources>
         <DataTemplate x:Key="BoardSquareTemplate">
-            <Border BorderBrush ="Black" BorderThickness ="1">
+            <Border BorderBrush ="Gray" BorderThickness ="1">
                 <Button Content="{Binding Value}"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
@@ -19,6 +19,7 @@
                     GotFocus="Button_GotFocus"
                     LostFocus="Button_LostFocus"
                     FocusVisualStyle="{x:Null}"
+                    Background="GhostWhite"
                     >
                     <Button.Style>
                         <Style TargetType="Button">
@@ -43,10 +44,32 @@
                 </ItemsControl.ItemsPanel>
             </ItemsControl>
         </DataTemplate>
+
+        <DataTemplate x:Key ="BlocksTemplate">
+            <Border BorderBrush ="DarkBlue" BorderThickness ="2">
+                <ItemsControl ItemsSource ="{Binding}" ItemTemplate="{StaticResource BoardSquareColumnsTemplate}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <UniformGrid Columns ="1"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+            </Border>
+        </DataTemplate>
+        <DataTemplate x:Key ="BlocksColumnTemplate">
+            <ItemsControl ItemsSource ="{Binding}" ItemTemplate ="{StaticResource BlocksTemplate}" Focusable="False">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Rows ="1"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+        </DataTemplate>
+
     </Window.Resources>
 
     <Grid>
-        <ItemsControl x:Name="lst" ItemTemplate="{DynamicResource BoardSquareColumnsTemplate}" ItemsSource="{Binding BoardSquares}" Focusable="False">
+        <ItemsControl x:Name="lst" ItemTemplate="{DynamicResource BlocksColumnTemplate}" ItemsSource="{Binding Squares}" Focusable="False">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <UniformGrid Columns ="1"/>

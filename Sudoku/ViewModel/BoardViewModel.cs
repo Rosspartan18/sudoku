@@ -20,15 +20,25 @@ namespace Sudoku.ViewModel
         {
             _board = board;
 
-            BoardSquares = new ObservableCollection<ObservableCollection<BoardSquare>>();
+            Squares = new ObservableCollection<ObservableCollection<ObservableCollection<ObservableCollection<BoardSquare>>>>();
 
-            for (int x = 0; x < 9; x++)
+            for (int block_X = 0; block_X < board.Length; block_X++)
             {
-                BoardSquares.Add(new ObservableCollection<BoardSquare>());
+                Squares.Add(new ObservableCollection<ObservableCollection<ObservableCollection<BoardSquare>>>());
 
-                for (int y = 0; y < 9; y++)
+                for (int block_Y = 0; block_Y < board.Length; block_Y++)
                 {
-                    BoardSquares[x].Add(board.BoardSquares[x, y]);
+                    Squares[block_X].Add(new ObservableCollection<ObservableCollection<BoardSquare>>());
+
+                    for (int x=0; x < board.Length; x++)
+                    {
+                        Squares[block_X][block_Y].Add(new ObservableCollection<BoardSquare>());
+
+                        for (int y=0; y < board.Length;y++)
+                        {
+                            Squares[block_X][block_Y][x].Add(board[block_X*board.Length + x, block_Y* block_Y + y]);
+                        }
+                    }
                 }
             }
 
@@ -36,7 +46,7 @@ namespace Sudoku.ViewModel
         }
 
 
-        public ObservableCollection<ObservableCollection<BoardSquare>> BoardSquares { get; set; }
+        public ObservableCollection<ObservableCollection<ObservableCollection<ObservableCollection<BoardSquare>>>> Squares { get; set; }
 
         private BoardSquare _selectedSquare;
         public BoardSquare SelectedSquare
@@ -77,16 +87,11 @@ namespace Sudoku.ViewModel
                 }
                 catch (FormatException)
                 {
-
                 }
                 catch (OverflowException)
                 {
-
                 }
             }
         }
-
-
     }
-
 }
