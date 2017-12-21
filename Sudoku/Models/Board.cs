@@ -8,25 +8,39 @@ namespace Sudoku.Models
 {
     public class Board
     {
-        public Board()
+        public Board(int length)
         {
-            BoardSquares = new BoardSquare[9, 9];
+            Length = length;
 
-            for (int x = 0; x < 9; x++)
+            Squares = new BoardSquare[length * length, length* length];
+
+            for (int x = 0; x < length * length; x++)
             {
-                for (int y = 0; y < 9; y++)
+                for (int y = 0; y < length * length; y++)
                 {
-                    BoardSquares[x, y] = new BoardSquare() { CanEdit = true };
+                    Squares[x, y] = new BoardSquare() { CanEdit = true };
                 }
             }
         }
 
-        public BoardSquare[,] BoardSquares
+        public BoardSquare[,] Squares
         {
             get;
             set;
         }
 
+        public readonly int Length;
 
+        public BoardSquare this[int x, int y]
+        {
+            get
+            {
+                return Squares[x, y];
+            }
+            set
+            {
+                Squares[x, y] = value;
+            }
+        }
     }
 }
