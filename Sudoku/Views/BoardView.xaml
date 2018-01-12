@@ -69,7 +69,11 @@
     </Window.Resources>
 
     <Grid>
-        <ItemsControl x:Name="lst" ItemTemplate="{DynamicResource BlocksColumnTemplate}" ItemsSource="{Binding Squares}" Focusable="False">
+        <ItemsControl x:Name="lst"
+                      ItemTemplate="{DynamicResource BlocksColumnTemplate}"
+                      ItemsSource="{Binding Squares}"
+                      Focusable="False"
+                      Margin="10">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <UniformGrid Columns ="1"/>
