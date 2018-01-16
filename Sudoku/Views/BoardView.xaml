@@ -11,8 +11,7 @@
 
     <Window.Resources>
         <DataTemplate x:Key="BoardSquareTemplate">
-            <Border BorderBrush ="Gray" BorderThickness ="1">
-                <Button Content="{Binding Value}"
+            <Button Content="{Binding Value}"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
                     Focusable="True"
@@ -20,19 +19,20 @@
                     LostFocus="Button_LostFocus"
                     FocusVisualStyle="{x:Null}"
                     Background="GhostWhite"
+                    MinWidth="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"
+                    MinHeight="{Binding ActualWidth, RelativeSource={RelativeSource Self}}"
                     >
-                    <Button.Style>
-                        <Style TargetType="Button">
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding CanEdit}"
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding CanEdit}"
                                          Value="False">
-                                    <Setter Property="FontWeight" Value="Bold" />
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Button.Style>
-                </Button>
-            </Border>
+                                <Setter Property="FontWeight" Value="Bold" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
         </DataTemplate>
 
         <DataTemplate x:Key="BoardSquareColumnsTemplate">
@@ -46,8 +46,8 @@
         </DataTemplate>
 
         <DataTemplate x:Key ="BlocksTemplate">
-            <Border BorderBrush ="DarkBlue" BorderThickness ="2">
-                <ItemsControl ItemsSource ="{Binding}" ItemTemplate="{StaticResource BoardSquareColumnsTemplate}">
+            <Border BorderBrush ="DarkBlue" BorderThickness ="1">
+                <ItemsControl ItemsSource ="{Binding}" ItemTemplate="{StaticResource BoardSquareColumnsTemplate}" Focusable="False">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <UniformGrid Columns ="1"/>
@@ -68,39 +68,41 @@
 
     </Window.Resources>
 
-    <Grid>
-        <ItemsControl x:Name="lst"
-                      ItemTemplate="{DynamicResource BlocksColumnTemplate}"
-                      ItemsSource="{Binding Squares}"
-                      Focusable="False"
-                      Margin="10">
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <UniformGrid Columns ="1"/>
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-            <ItemsControl.InputBindings>
-                <KeyBinding Key="NumPad0" Command="{Binding NumberKeyPressedCommand}" CommandParameter="0"/>
-                <KeyBinding Key="NumPad1" Command="{Binding NumberKeyPressedCommand}" CommandParameter="1"/>
-                <KeyBinding Key="NumPad2" Command="{Binding NumberKeyPressedCommand}" CommandParameter="2"/>
-                <KeyBinding Key="NumPad3" Command="{Binding NumberKeyPressedCommand}" CommandParameter="3"/>
-                <KeyBinding Key="NumPad4" Command="{Binding NumberKeyPressedCommand}" CommandParameter="4"/>
-                <KeyBinding Key="NumPad5" Command="{Binding NumberKeyPressedCommand}" CommandParameter="5"/>
-                <KeyBinding Key="NumPad6" Command="{Binding NumberKeyPressedCommand}" CommandParameter="6"/>
-                <KeyBinding Key="NumPad7" Command="{Binding NumberKeyPressedCommand}" CommandParameter="7"/>
-                <KeyBinding Key="NumPad8" Command="{Binding NumberKeyPressedCommand}" CommandParameter="8"/>
-                <KeyBinding Key="NumPad9" Command="{Binding NumberKeyPressedCommand}" CommandParameter="9"/>
-                <KeyBinding Key="D0" Command="{Binding NumberKeyPressedCommand}" CommandParameter="0"/>
-                <KeyBinding Key="D1" Command="{Binding NumberKeyPressedCommand}" CommandParameter="1"/>
-                <KeyBinding Key="D2" Command="{Binding NumberKeyPressedCommand}" CommandParameter="2"/>
-                <KeyBinding Key="D3" Command="{Binding NumberKeyPressedCommand}" CommandParameter="3"/>
-                <KeyBinding Key="D4" Command="{Binding NumberKeyPressedCommand}" CommandParameter="4"/>
-                <KeyBinding Key="D5" Command="{Binding NumberKeyPressedCommand}" CommandParameter="5"/>
-                <KeyBinding Key="D6" Command="{Binding NumberKeyPressedCommand}" CommandParameter="6"/>
-                <KeyBinding Key="D7" Command="{Binding NumberKeyPressedCommand}" CommandParameter="7"/>
-                <KeyBinding Key="D8" Command="{Binding NumberKeyPressedCommand}" CommandParameter="8"/>
-                <KeyBinding Key="D9" Command="{Binding NumberKeyPressedCommand}" CommandParameter="9"/>
-            </ItemsControl.InputBindings>
-        </ItemsControl>
-    </Grid>
+    <Viewbox Stretch="Uniform" StretchDirection="Both">
+        <Grid>
+            <ItemsControl x:Name="lst"
+                          ItemTemplate="{DynamicResource BlocksColumnTemplate}"
+                          ItemsSource="{Binding Squares}"
+                          Focusable="False"
+                          Margin="10">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Columns ="1"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.InputBindings>
+                    <KeyBinding Key="NumPad0" Command="{Binding NumberKeyPressedCommand}" CommandParameter="0"/>
+                    <KeyBinding Key="NumPad1" Command="{Binding NumberKeyPressedCommand}" CommandParameter="1"/>
+                    <KeyBinding Key="NumPad2" Command="{Binding NumberKeyPressedCommand}" CommandParameter="2"/>
+                    <KeyBinding Key="NumPad3" Command="{Binding NumberKeyPressedCommand}" CommandParameter="3"/>
+                    <KeyBinding Key="NumPad4" Command="{Binding NumberKeyPressedCommand}" CommandParameter="4"/>
+                    <KeyBinding Key="NumPad5" Command="{Binding NumberKeyPressedCommand}" CommandParameter="5"/>
+                    <KeyBinding Key="NumPad6" Command="{Binding NumberKeyPressedCommand}" CommandParameter="6"/>
+                    <KeyBinding Key="NumPad7" Command="{Binding NumberKeyPressedCommand}" CommandParameter="7"/>
+                    <KeyBinding Key="NumPad8" Command="{Binding NumberKeyPressedCommand}" CommandParameter="8"/>
+                    <KeyBinding Key="NumPad9" Command="{Binding NumberKeyPressedCommand}" CommandParameter="9"/>
+                    <KeyBinding Key="D0" Command="{Binding NumberKeyPressedCommand}" CommandParameter="0"/>
+                    <KeyBinding Key="D1" Command="{Binding NumberKeyPressedCommand}" CommandParameter="1"/>
+                    <KeyBinding Key="D2" Command="{Binding NumberKeyPressedCommand}" CommandParameter="2"/>
+                    <KeyBinding Key="D3" Command="{Binding NumberKeyPressedCommand}" CommandParameter="3"/>
+                    <KeyBinding Key="D4" Command="{Binding NumberKeyPressedCommand}" CommandParameter="4"/>
+                    <KeyBinding Key="D5" Command="{Binding NumberKeyPressedCommand}" CommandParameter="5"/>
+                    <KeyBinding Key="D6" Command="{Binding NumberKeyPressedCommand}" CommandParameter="6"/>
+                    <KeyBinding Key="D7" Command="{Binding NumberKeyPressedCommand}" CommandParameter="7"/>
+                    <KeyBinding Key="D8" Command="{Binding NumberKeyPressedCommand}" CommandParameter="8"/>
+                    <KeyBinding Key="D9" Command="{Binding NumberKeyPressedCommand}" CommandParameter="9"/>
+                </ItemsControl.InputBindings>
+            </ItemsControl>
+        </Grid>
+    </Viewbox>
 </Window>
