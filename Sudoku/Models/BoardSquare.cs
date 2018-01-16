@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,6 +22,7 @@ namespace Sudoku.Models
             {
                 if (_value != value)
                 {
+                    Trace.WriteLine(String.Format("BoardSquare.Value changed from {0} to {1}", (!_value.HasValue) ? "NULL" : _value.ToString(), (!value.HasValue) ? "NULL" : value.ToString()));
                     _value = value;
                     RaisePropertyChanged("Value");
                 }

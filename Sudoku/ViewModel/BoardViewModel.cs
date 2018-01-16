@@ -44,6 +44,7 @@ namespace Sudoku.ViewModel
             }
 
             NumberKeyPressedCommand = new RelayCommand<string>(this.NumberKeyPressedAction);
+            DeletePressedCommand = new RelayCommand(this.DeletePressedAction);
         }
 
 
@@ -83,9 +84,31 @@ namespace Sudoku.ViewModel
 
                     if (number >=0 && number <= 10 )
                     {
-                        Trace.WriteLine(String.Format("Change Selected Square Value from {0} to {1}", (!SelectedSquare.Value.HasValue) ? "NULL" : SelectedSquare.Value.ToString(), number));
                         SelectedSquare.Value = number;
                     }
+                }
+                catch (FormatException)
+                {
+                }
+                catch (OverflowException)
+                {
+                }
+            }
+        }
+
+        public RelayCommand DeletePressedCommand
+        {
+            get;
+            set;
+        }
+
+        void DeletePressedAction()
+        {
+            if ((SelectedSquare != null) && (SelectedSquare.CanEdit) && SelectedSquare.Value.HasValue)
+            {
+                try
+                {
+                    SelectedSquare.Value = null;
                 }
                 catch (FormatException)
                 {

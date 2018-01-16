@@ -101,6 +101,8 @@
                     <KeyBinding Key="D7" Command="{Binding NumberKeyPressedCommand}" CommandParameter="7"/>
                     <KeyBinding Key="D8" Command="{Binding NumberKeyPressedCommand}" CommandParameter="8"/>
                     <KeyBinding Key="D9" Command="{Binding NumberKeyPressedCommand}" CommandParameter="9"/>
+                    <KeyBinding Key="Delete" Command="{Binding DeletePressedCommand}"/>
+                    <KeyBinding Key="Backspace" Command="{Binding DeletePressedCommand}"/>
                 </ItemsControl.InputBindings>
             </ItemsControl>
         </Grid>
