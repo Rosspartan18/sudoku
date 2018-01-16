@@ -16,8 +16,6 @@
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
                     Focusable="True"
-                    GotFocus="Button_GotFocus"
-                    LostFocus="Button_LostFocus"
                     FocusVisualStyle="{x:Null}"
                     Background="GhostWhite"
                     MinWidth="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"
@@ -33,6 +31,14 @@
                         </Style.Triggers>
                     </Style>
                 </Button.Style>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="GotFocus">
+                        <cmd:EventToCommand Command="{Binding ElementName=BoardItemsControl, Mode=OneWay, Path=DataContext.GotFocusCommand}" CommandParameter="{Binding}" />
+                    </i:EventTrigger>
+                    <i:EventTrigger EventName="LostFocus">
+                        <cmd:EventToCommand Command="{Binding ElementName=BoardItemsControl, Mode=OneWay, Path=DataContext.LostFocusCommand}" CommandParameter="{Binding}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
             </Button>
         </DataTemplate>
 
@@ -71,7 +77,7 @@
 
     <Viewbox Stretch="Uniform" StretchDirection="Both">
         <Grid>
-            <ItemsControl x:Name="lst"
+            <ItemsControl x:Name="BoardItemsControl"
                           ItemTemplate="{DynamicResource BlocksColumnTemplate}"
                           ItemsSource="{Binding Squares}"
                           Focusable="False"

@@ -45,6 +45,8 @@ namespace Sudoku.ViewModel
 
             NumberKeyPressedCommand = new RelayCommand<string>(this.NumberKeyPressedAction);
             DeletePressedCommand = new RelayCommand(this.DeletePressedAction);
+            GotFocusCommand = new RelayCommand<BoardSquare>(this.GotFocusAction);
+            LostFocusCommand = new RelayCommand<BoardSquare>(this.LostFocusAction);
         }
 
 
@@ -116,6 +118,35 @@ namespace Sudoku.ViewModel
                 catch (OverflowException)
                 {
                 }
+            }
+        }
+
+
+        public RelayCommand<BoardSquare> GotFocusCommand
+        {
+            get;
+            set;
+        }
+
+        public RelayCommand<BoardSquare> LostFocusCommand
+        {
+            get;
+            set;
+        }
+
+        private void GotFocusAction(BoardSquare boardSquareGotFocus)
+        {
+            if (!ReferenceEquals(SelectedSquare, boardSquareGotFocus))
+            {
+                SelectedSquare = boardSquareGotFocus;
+            }
+        }
+
+        private void LostFocusAction(BoardSquare boardSquareLostFocus)
+        {
+            if (ReferenceEquals(SelectedSquare, boardSquareLostFocus))
+            {
+                SelectedSquare = null;
             }
         }
     }
