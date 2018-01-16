@@ -43,5 +43,10 @@ namespace Sudoku.Models
                 }
             }
         }
+
+        public override string ToString()
+        {
+            return String.Format("Value: {0}; CanEdit: {1};", (!_value.HasValue) ? "NULL" : _value.ToString(), CanEdit);
+        }
     }
 }
