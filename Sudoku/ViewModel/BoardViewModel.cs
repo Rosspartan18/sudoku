@@ -37,7 +37,7 @@ namespace Sudoku.ViewModel
 
                         for (int y=0; y < board.Length;y++)
                         {
-                            Squares[block_X][block_Y][x].Add(board[block_X*board.Length + x, block_Y* block_Y + y]);
+                            Squares[block_X][block_Y][x].Add(board[block_X*board.Length + x, block_Y* board.Length + y]);
                         }
                     }
                 }
