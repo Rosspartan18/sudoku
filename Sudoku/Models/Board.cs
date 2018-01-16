@@ -18,7 +18,7 @@ namespace Sudoku.Models
             {
                 for (int y = 0; y < length * length; y++)
                 {
-                    Squares[x, y] = new BoardSquare() { CanEdit = true };
+                    Squares[x, y] = new BoardSquare() { CanEdit = true, Valid=false};
                 }
             }
         }
@@ -84,6 +84,17 @@ namespace Sudoku.Models
 
         public void Validate()
         {
+            // Mark everything that does not have a value as invalid, and everything that does as valid.
+            for (int x = 0; x < Length * Length; x++)
+            {
+                for (int y = 0; y < Length * Length; y++)
+                {
+                    Squares[x, y].Valid = (Squares[x, y].Value.HasValue);
+                }
+            }
+
+
+            // Mark everything that is a duplicate as invalid.
             // Row and columns
             for (int i = 0; i < Length * Length; i++)
             {
