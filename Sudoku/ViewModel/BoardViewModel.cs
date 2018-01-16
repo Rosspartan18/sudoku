@@ -13,7 +13,7 @@ using System.Windows.Input;
 
 namespace Sudoku.ViewModel
 {
-    class BoardViewModel : ObservableObject
+    public class BoardViewModel : ViewModelBase
     {
         Board _board;
 
