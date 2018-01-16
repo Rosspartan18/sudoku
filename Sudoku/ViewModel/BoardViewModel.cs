@@ -47,6 +47,7 @@ namespace Sudoku.ViewModel
             DeletePressedCommand = new RelayCommand(this.DeletePressedAction);
             GotFocusCommand = new RelayCommand<BoardSquare>(this.GotFocusAction);
             LostFocusCommand = new RelayCommand<BoardSquare>(this.LostFocusAction);
+            ValidateCommand = new RelayCommand(_board.Validate);
         }
 
 
@@ -148,6 +149,12 @@ namespace Sudoku.ViewModel
             {
                 SelectedSquare = null;
             }
+        }
+
+        public RelayCommand ValidateCommand
+        {
+            get;
+            set;
         }
     }
 }

@@ -17,7 +17,6 @@
                     VerticalAlignment="Stretch"
                     Focusable="True"
                     FocusVisualStyle="{x:Null}"
-                    Background="GhostWhite"
                     MinWidth="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"
                     MinHeight="{Binding ActualWidth, RelativeSource={RelativeSource Self}}"
                     >
@@ -27,6 +26,18 @@
                             <DataTrigger Binding="{Binding CanEdit}"
                                          Value="False">
                                 <Setter Property="FontWeight" Value="Bold" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding CanEdit}"
+                                         Value="True">
+                                <Setter Property="FontWeight" Value="Regular" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Valid}"
+                                         Value="False">
+                                <Setter Property="Background" Value="PaleVioletRed" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Valid}"
+                                         Value="True">
+                                <Setter Property="Background" Value="GhostWhite" />
                             </DataTrigger>
                         </Style.Triggers>
                     </Style>
@@ -75,43 +86,58 @@
 
     </Window.Resources>
 
-    <Viewbox Stretch="Uniform" StretchDirection="Both">
-        <Grid>
-            <ItemsControl x:Name="BoardItemsControl"
-                          ItemTemplate="{DynamicResource BlocksColumnTemplate}"
-                          ItemsSource="{Binding Squares}"
-                          Focusable="False"
-                          Margin="10">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <UniformGrid Columns ="1"/>
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                <ItemsControl.InputBindings>
-                    <KeyBinding Key="NumPad0" Command="{Binding NumberKeyPressedCommand}" CommandParameter="0"/>
-                    <KeyBinding Key="NumPad1" Command="{Binding NumberKeyPressedCommand}" CommandParameter="1"/>
-                    <KeyBinding Key="NumPad2" Command="{Binding NumberKeyPressedCommand}" CommandParameter="2"/>
-                    <KeyBinding Key="NumPad3" Command="{Binding NumberKeyPressedCommand}" CommandParameter="3"/>
-                    <KeyBinding Key="NumPad4" Command="{Binding NumberKeyPressedCommand}" CommandParameter="4"/>
-                    <KeyBinding Key="NumPad5" Command="{Binding NumberKeyPressedCommand}" CommandParameter="5"/>
-                    <KeyBinding Key="NumPad6" Command="{Binding NumberKeyPressedCommand}" CommandParameter="6"/>
-                    <KeyBinding Key="NumPad7" Command="{Binding NumberKeyPressedCommand}" CommandParameter="7"/>
-                    <KeyBinding Key="NumPad8" Command="{Binding NumberKeyPressedCommand}" CommandParameter="8"/>
-                    <KeyBinding Key="NumPad9" Command="{Binding NumberKeyPressedCommand}" CommandParameter="9"/>
-                    <KeyBinding Key="D0" Command="{Binding NumberKeyPressedCommand}" CommandParameter="0"/>
-                    <KeyBinding Key="D1" Command="{Binding NumberKeyPressedCommand}" CommandParameter="1"/>
-                    <KeyBinding Key="D2" Command="{Binding NumberKeyPressedCommand}" CommandParameter="2"/>
-                    <KeyBinding Key="D3" Command="{Binding NumberKeyPressedCommand}" CommandParameter="3"/>
-                    <KeyBinding Key="D4" Command="{Binding NumberKeyPressedCommand}" CommandParameter="4"/>
-                    <KeyBinding Key="D5" Command="{Binding NumberKeyPressedCommand}" CommandParameter="5"/>
-                    <KeyBinding Key="D6" Command="{Binding NumberKeyPressedCommand}" CommandParameter="6"/>
-                    <KeyBinding Key="D7" Command="{Binding NumberKeyPressedCommand}" CommandParameter="7"/>
-                    <KeyBinding Key="D8" Command="{Binding NumberKeyPressedCommand}" CommandParameter="8"/>
-                    <KeyBinding Key="D9" Command="{Binding NumberKeyPressedCommand}" CommandParameter="9"/>
-                    <KeyBinding Key="Delete" Command="{Binding DeletePressedCommand}"/>
-                    <KeyBinding Key="Backspace" Command="{Binding DeletePressedCommand}"/>
-                </ItemsControl.InputBindings>
-            </ItemsControl>
-        </Grid>
-    </Viewbox>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <Viewbox Stretch="Uniform" StretchDirection="Both">
+            <Grid>
+                <ItemsControl x:Name="BoardItemsControl"
+                              ItemTemplate="{DynamicResource BlocksColumnTemplate}"
+                              ItemsSource="{Binding Squares}"
+                              Focusable="False"
+                              Margin="10">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <UniformGrid Columns ="1"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.InputBindings>
+                        <KeyBinding Key="NumPad0" Command="{Binding NumberKeyPressedCommand}" CommandParameter="0"/>
+                        <KeyBinding Key="NumPad1" Command="{Binding NumberKeyPressedCommand}" CommandParameter="1"/>
+                        <KeyBinding Key="NumPad2" Command="{Binding NumberKeyPressedCommand}" CommandParameter="2"/>
+                        <KeyBinding Key="NumPad3" Command="{Binding NumberKeyPressedCommand}" CommandParameter="3"/>
+                        <KeyBinding Key="NumPad4" Command="{Binding NumberKeyPressedCommand}" CommandParameter="4"/>
+                        <KeyBinding Key="NumPad5" Command="{Binding NumberKeyPressedCommand}" CommandParameter="5"/>
+                        <KeyBinding Key="NumPad6" Command="{Binding NumberKeyPressedCommand}" CommandParameter="6"/>
+                        <KeyBinding Key="NumPad7" Command="{Binding NumberKeyPressedCommand}" CommandParameter="7"/>
+                        <KeyBinding Key="NumPad8" Command="{Binding NumberKeyPressedCommand}" CommandParameter="8"/>
+                        <KeyBinding Key="NumPad9" Command="{Binding NumberKeyPressedCommand}" CommandParameter="9"/>
+                        <KeyBinding Key="D0" Command="{Binding NumberKeyPressedCommand}" CommandParameter="0"/>
+                        <KeyBinding Key="D1" Command="{Binding NumberKeyPressedCommand}" CommandParameter="1"/>
+                        <KeyBinding Key="D2" Command="{Binding NumberKeyPressedCommand}" CommandParameter="2"/>
+                        <KeyBinding Key="D3" Command="{Binding NumberKeyPressedCommand}" CommandParameter="3"/>
+                        <KeyBinding Key="D4" Command="{Binding NumberKeyPressedCommand}" CommandParameter="4"/>
+                        <KeyBinding Key="D5" Command="{Binding NumberKeyPressedCommand}" CommandParameter="5"/>
+                        <KeyBinding Key="D6" Command="{Binding NumberKeyPressedCommand}" CommandParameter="6"/>
+                        <KeyBinding Key="D7" Command="{Binding NumberKeyPressedCommand}" CommandParameter="7"/>
+                        <KeyBinding Key="D8" Command="{Binding NumberKeyPressedCommand}" CommandParameter="8"/>
+                        <KeyBinding Key="D9" Command="{Binding NumberKeyPressedCommand}" CommandParameter="9"/>
+                        <KeyBinding Key="Delete" Command="{Binding DeletePressedCommand}"/>
+                        <KeyBinding Key="Backspace" Command="{Binding DeletePressedCommand}"/>
+                    </ItemsControl.InputBindings>
+                </ItemsControl>
+            </Grid>
+        </Viewbox>
+
+
+        <Button Grid.Row="1" Content="Validate" ClickMode="Release">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="Click">
+                    <cmd:EventToCommand Command="{Binding Mode=OneWay, Path=ValidateCommand}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </Button>
+    </Grid>
 </Window>

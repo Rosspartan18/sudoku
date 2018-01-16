@@ -11,6 +11,13 @@ namespace Sudoku.Models
 {
     public class BoardSquare : ObservableObject
     {
+        public BoardSquare()
+        {
+            _value = null;
+            _valid = true;
+            _canEdit = true;
+        }
+
         private int? _value;
         public int? Value
         {
@@ -46,9 +53,27 @@ namespace Sudoku.Models
             }
         }
 
+        private bool _valid;
+        public bool Valid
+        {
+            get
+            {
+                return _valid;
+            }
+            set
+            {
+                if (_valid != value)
+                {
+                    _valid = value;
+                    RaisePropertyChanged("Valid");
+                }
+            }
+        }
+
+
         public override string ToString()
         {
-            return String.Format("Value: {0}; CanEdit: {1};", (!_value.HasValue) ? "NULL" : _value.ToString(), CanEdit);
+            return String.Format("Value: {0}; CanEdit: {1}; Valid: {2}", (!_value.HasValue) ? "NULL" : _value.ToString(), CanEdit, Valid);
         }
     }
 }
