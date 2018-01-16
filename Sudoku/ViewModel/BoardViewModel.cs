@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -82,6 +83,7 @@ namespace Sudoku.ViewModel
 
                     if (number >=0 && number <= 10 )
                     {
+                        Trace.WriteLine(String.Format("Change Selected Square Value from {0} to {1}", (!SelectedSquare.Value.HasValue) ? "NULL" : SelectedSquare.Value.ToString(), number));
                         SelectedSquare.Value = number;
                     }
                 }
